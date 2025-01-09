@@ -6,19 +6,19 @@ export default function Hero() {
     <div className="relative bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-stretch">
         {/* Text Section */}
-        <div className="relative z-10 pb-8 bg-black sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 xl:pb-32 flex items-center">
-          <main className="px-4 sm:px-6 lg:px-8">
-            <div className="sm:text-center lg:text-left">
+        <div className="relative z-10 bg-black lg:w-1/2 flex items-center justify-center">
+          <main className="px-6 lg:px-8 text-center lg:text-left">
+            <div>
               <h1 className="text-4xl tracking-tight font-extrabold text-gold-500 sm:text-5xl md:text-6xl">
                 <span className="block">Empowering African</span>
                 <span className="block text-yellow-400">Students in Blockchain</span>
                 <span className="block text-white">and Web3</span>
               </h1>
-              <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+              <p className="mt-5 text-base text-gray-300 sm:mt-6 sm:text-lg sm:max-w-lg md:mt-8 md:text-xl lg:mx-0">
                 Join a community of passionate students exploring the frontiers of blockchain technology
                 and Web3 innovation across Africa.
               </p>
-              <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+              <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
                   <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black bg-gold-500 hover:bg-gold-400 md:py-4 md:text-lg md:px-10">
                     Join the DAO
