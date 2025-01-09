@@ -35,7 +35,7 @@ const DesktopMenu: React.FC<{ navigation: NavigationItem[] }> = ({ navigation })
 
           {/* Dropdown for items with submenu */}
           {item.submenu && openDropdown === item.name && (
-            <div className="absolute left-0 mt-2 w-48 bg-black border border-gold-500 rounded-md">
+            <div className="absolute left-0 mt-2 w-48 bg-black border border-gold-500 rounded-md z-50">
               {item.submenu.map((subitem) => (
                 <Link
                   key={subitem.name}
@@ -143,7 +143,7 @@ const Navbar: React.FC = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="bg-black border-b border-gold-500">
+    <nav className="bg-black border-b border-gold-500 relative z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo */}
