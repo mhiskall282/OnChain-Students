@@ -26,6 +26,7 @@ const DesktopMenu: React.FC<{ navigation: NavigationItem[] }> = ({ navigation })
           onMouseEnter={() => item.submenu && setOpenDropdown(item.name)}
           onMouseLeave={() => setOpenDropdown(null)}
         >
+          {/* Main Link (e.g., "About") */}
           <Link
             to={item.href}
             className="text-gold-500 hover:text-gold-400 px-3 py-2 rounded-md text-sm font-medium"
@@ -67,6 +68,7 @@ const MobileMenu: React.FC<{ navigation: NavigationItem[], isOpen: boolean, togg
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black">
           {navigation.map((item) => (
             <div key={item.name}>
+              {/* Main Link (e.g., "About") */}
               <Link
                 to={item.href}
                 className="text-gold-500 hover:text-gold-400 block px-3 py-2 rounded-md text-base font-medium"
@@ -107,11 +109,10 @@ const Navbar: React.FC = () => {
     { name: 'Home', href: '/' },
     {
       name: 'About',
-      href: '#',
+      href: '/about',
       submenu: [
-        { name: 'About', href: '/about' },
-        { name: 'Programs', href: '/programs' },
-        { name: 'Projects', href: '/projects' },
+        { name: 'Our Team', href: '/about/team' },
+        { name: 'Mission', href: '/about/mission' },
       ],
     },
     {
