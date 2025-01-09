@@ -6,8 +6,8 @@ export default function Hero() {
     <div className="relative bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-stretch">
         {/* Text Section */}
-        <div className="relative z-10 pb-8 bg-black text-center sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 xl:pb-32">
-          <main className="h-full flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 pb-8 bg-black sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 xl:pb-32 flex items-center">
+          <main className="px-4 sm:px-6 lg:px-8">
             <div className="sm:text-center lg:text-left">
               <h1 className="text-4xl tracking-tight font-extrabold text-gold-500 sm:text-5xl md:text-6xl">
                 <span className="block">Empowering African</span>
