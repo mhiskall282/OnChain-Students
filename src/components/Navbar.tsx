@@ -38,35 +38,13 @@ const DesktopMenu: React.FC<{ navigation: NavigationItem[] }> = ({ navigation })
           {item.submenu && openDropdown === item.name && (
             <div className="absolute left-0 mt-2 w-48 bg-black border border-gold-500 rounded-md z-50">
               {item.submenu.map((subitem) => (
-                <div
+                <Link
                   key={subitem.name}
-                  className="relative"
-                  onMouseEnter={() => setOpenDropdown(subitem.name)}
-                  onMouseLeave={() => setOpenDropdown(null)}
+                  to={subitem.href}
+                  className="block text-gold-500 hover:text-gold-400 px-4 py-2 text-sm"
                 >
-                  {/* Submenu Link */}
-                  <Link
-                    to={subitem.href}
-                    className="block text-gold-500 hover:text-gold-400 px-4 py-2 text-sm"
-                  >
-                    {subitem.name}
-                  </Link>
-
-                  {/* Nested Submenu */}
-                  {subitem.submenu && openDropdown === subitem.name && (
-                    <div className="absolute left-full top-0 mt-2 w-48 bg-black border border-gold-500 rounded-md">
-                      {subitem.submenu.map((nestedSubitem) => (
-                        <Link
-                          key={nestedSubitem.name}
-                          to={nestedSubitem.href}
-                          className="block text-gold-500 hover:text-gold-400 px-4 py-2 text-sm"
-                        >
-                          {nestedSubitem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                  {subitem.name}
+                </Link>
               ))}
             </div>
           )}
@@ -102,32 +80,14 @@ const MobileMenu: React.FC<{ navigation: NavigationItem[], isOpen: boolean, togg
               {item.submenu && (
                 <div className="pl-4">
                   {item.submenu.map((subitem) => (
-                    <div key={subitem.name}>
-                      {/* Submenu Link */}
-                      <Link
-                        to={subitem.href}
-                        className="text-gold-500 hover:text-gold-400 block px-3 py-2 rounded-md text-base font-medium"
-                        onClick={toggleMenu}
-                      >
-                        {subitem.name}
-                      </Link>
-
-                      {/* Nested Submenu */}
-                      {subitem.submenu && (
-                        <div className="pl-4">
-                          {subitem.submenu.map((nestedSubitem) => (
-                            <Link
-                              key={nestedSubitem.name}
-                              to={nestedSubitem.href}
-                              className="text-gold-500 hover:text-gold-400 block px-3 py-2 rounded-md text-base font-medium"
-                              onClick={toggleMenu}
-                            >
-                              {nestedSubitem.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                    <Link
+                      key={subitem.name}
+                      to={subitem.href}
+                      className="text-gold-500 hover:text-gold-400 block px-3 py-2 rounded-md text-base font-medium"
+                      onClick={toggleMenu}
+                    >
+                      {subitem.name}
+                    </Link>
                   ))}
                 </div>
               )}
@@ -153,66 +113,32 @@ const Navbar: React.FC = () => {
       submenu: [
         { name: 'Our Team', href: '/about/team' },
         { name: 'Mission', href: '/about/mission' },
-        {
-          name: 'Vision',
-          href: '/about/vision',
-          submenu: [
-            { name: 'Future Goals', href: '/about/vision/goals' },
-            { name: 'Innovative Projects', href: '/about/vision/projects' },
-          ],
-        },
       ],
     },
     {
-      name: 'Programs',
-      href: '/programs',
+      name: 'Community & Governance',
+      href: '#',
       submenu: [
-        { name: 'Our Courses', href: '/programs/courses' },
-        { name: 'Workshops', href: '/programs/workshops' },
+        { name: 'Governance', href: '/governance' },
+        { name: 'Community', href: '/community' },
       ],
     },
     {
-      name: 'Projects',
-      href: '/projects',
+      name: 'Resources',
+      href: '#',
       submenu: [
-        { name: 'Blockchain Projects', href: '/projects/blockchain' },
-        { name: 'Web3 Projects', href: '/projects/web3' },
+        { name: 'Blog', href: '/blog' },
+        { name: 'Documentation', href: '/documentation' },
       ],
     },
     {
-      name: 'Governance',
-      href: '/governance',
+      name: 'Support',
+      href: '#',
       submenu: [
-        { name: 'Voting', href: '/governance/voting' },
-        { name: 'Proposal', href: '/governance/proposal' },
+        { name: 'FAQ', href: '/faq' },
+        { name: 'Contact', href: '/contact' },
       ],
     },
-    {
-      name: 'Community',
-      href: '/community',
-      submenu: [
-        { name: 'Community Guidelines', href: '/community/guidelines' },
-        { name: 'Events', href: '/community/events' },
-      ],
-    },
-    {
-      name: 'Blog',
-      href: '/blog',
-      submenu: [
-        { name: 'Latest News', href: '/blog/latest' },
-        { name: 'Guest Posts', href: '/blog/guest-posts' },
-      ],
-    },
-    {
-      name: 'Documentation',
-      href: '/documentation',
-      submenu: [
-        { name: 'API Docs', href: '/documentation/api' },
-        { name: 'Tutorials', href: '/documentation/tutorials' },
-      ],
-    },
-    { name: 'FAQ', href: '/faq' },
-    { name: 'Contact', href: '/contact' },
   ];
 
   const toggleMenu = () => setIsOpen(!isOpen);
