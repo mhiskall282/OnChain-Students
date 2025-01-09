@@ -13,6 +13,9 @@ export default function Navbar() {
     { name: 'Governance', href: '/governance' },
     { name: 'Community', href: '/community' },
     { name: 'Blog', href: '/blog' },
+    { name: 'Documentation', href: '/documentation' },
+    { name: 'FAQ', href: '/faq' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -35,7 +38,7 @@ export default function Navbar() {
                 {item.name}
               </Link>
             ))}
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+            <button className="bg-gold-500 text-black px-4 py-2 rounded-md hover:bg-gold-400">
               Connect Wallet
             </button>
           </div>
@@ -65,7 +68,7 @@ export default function Navbar() {
                 {item.name}
               </Link>
             ))}
-            <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+            <button className="w-full bg-gold-500 text-black px-4 py-2 rounded-md hover:bg-gold-400">
               Connect Wallet
             </button>
           </div>

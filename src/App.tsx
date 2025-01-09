@@ -9,6 +9,9 @@ import Projects from './pages/Projects';
 import Governance from './pages/Governance';
 import Community from './pages/Community';
 import Blog from './pages/Blog';
+import Documentation from './pages/Documentation';
+import FAQ from './pages/FAQ';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -24,6 +27,9 @@ function App() {
             <Route path="/governance" element={<Governance />} />
             <Route path="/community" element={<Community />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/documentation" element={<Documentation />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
         <Footer />

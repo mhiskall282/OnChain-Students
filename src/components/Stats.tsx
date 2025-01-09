@@ -16,17 +16,17 @@ export default function Stats() {
           {stats.map((stat) => (
             <div
               key={stat.name}
-              className="bg-gray-900 rounded-lg p-6 border border-gold-500"
+              className="bg-gray-900 rounded-lg p-6 border border-gold-500 hover:border-yellow-400 transition-colors duration-200"
             >
               <div className="flex items-center">
-                <div className="p-3 rounded-md bg-blue-600">
-                  <stat.icon className="h-6 w-6 text-white" />
+                <div className="p-3 rounded-md bg-gold-500">
+                  <stat.icon className="h-6 w-6 text-black" />
                 </div>
                 <div className="ml-4">
                   <div className="text-2xl font-semibold text-gold-500">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-gray-400">{stat.name}</div>
+                  <div className="text-sm text-gray-300">{stat.name}</div>
                 </div>
               </div>
             </div>

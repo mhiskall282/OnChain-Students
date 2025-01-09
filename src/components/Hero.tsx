@@ -10,8 +10,8 @@ export default function Hero() {
             <div className="sm:text-center lg:text-left">
               <h1 className="text-4xl tracking-tight font-extrabold text-gold-500 sm:text-5xl md:text-6xl">
                 <span className="block">Empowering African</span>
-                <span className="block text-blue-600">Students in Blockchain</span>
-                <span className="block text-red-600">and Web3</span>
+                <span className="block text-yellow-400">Students in Blockchain</span>
+                <span className="block text-white">and Web3</span>
               </h1>
               <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                 Join a community of passionate students exploring the frontiers of blockchain technology
@@ -19,7 +19,7 @@ export default function Hero() {
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
-                  <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
+                  <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black bg-gold-500 hover:bg-gold-400 md:py-4 md:text-lg md:px-10">
                     Join the DAO
                     <ArrowRight className="ml-2" size={20} />
                   </button>

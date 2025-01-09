@@ -25,7 +25,7 @@ export default function Blog() {
           {blogs.map((post) => (
             <div
               key={post.id}
-              className="bg-gray-900 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-200"
+              className="bg-gray-900 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-200 border border-gold-500"
             >
               <img
                 className="h-48 w-full object-cover"
@@ -45,14 +45,14 @@ export default function Blog() {
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-600 text-white"
+                      className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gold-500 text-black"
                     >
                       <Tag className="mr-1" size={12} />
                       {tag}
                     </span>
                   ))}
                 </div>
-                <button className="text-blue-500 hover:text-blue-400 font-medium">
+                <button className="text-gold-500 hover:text-yellow-400 font-medium">
                   Read More →
                 </button>
               </div>
@@ -78,7 +78,7 @@ export default function Blog() {
                   placeholder="Enter your email"
                   className="flex-1 px-4 py-2 rounded-md bg-black border border-gold-500 text-white focus:outline-none focus:ring-2 focus:ring-gold-500"
                 />
-                <button className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-200">
+                <button className="bg-gold-500 text-black px-6 py-2 rounded-md hover:bg-yellow-400 transition duration-200">
                   Subscribe
                 </button>
               </div>
