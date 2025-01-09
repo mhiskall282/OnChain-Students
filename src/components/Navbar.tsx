@@ -117,7 +117,7 @@ const Navbar: React.FC = () => {
     },
     {
       name: 'Community & Governance',
-      href: '#',
+      href: '/community',
       submenu: [
         { name: 'Governance', href: '/governance' },
         { name: 'Community', href: '/community' },
@@ -125,7 +125,7 @@ const Navbar: React.FC = () => {
     },
     {
       name: 'Resources',
-      href: '#',
+      href: '/documentation',
       submenu: [
         { name: 'Blog', href: '/blog' },
         { name: 'Documentation', href: '/documentation' },
@@ -133,7 +133,7 @@ const Navbar: React.FC = () => {
     },
     {
       name: 'Support',
-      href: '#',
+      href: '/contact',
       submenu: [
         { name: 'FAQ', href: '/faq' },
         { name: 'Contact', href: '/contact' },
