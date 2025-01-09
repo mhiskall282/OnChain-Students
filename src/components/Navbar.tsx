@@ -105,11 +105,23 @@ const Navbar: React.FC = () => {
 
   const navigation: NavigationItem[] = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Programs', href: '/programs' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Governance', href: '/governance' },
-    { name: 'Community', href: '/community' },
+    {
+      name: 'About',
+      href: '#',
+      submenu: [
+        { name: 'About', href: '/about' },
+        { name: 'Programs', href: '/programs' },
+        { name: 'Projects', href: '/projects' },
+      ],
+    },
+    {
+      name: 'Community & Governance',
+      href: '#',
+      submenu: [
+        { name: 'Governance', href: '/governance' },
+        { name: 'Community', href: '/community' },
+      ],
+    },
     {
       name: 'Resources',
       href: '#',
