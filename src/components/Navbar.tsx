@@ -116,28 +116,60 @@ const Navbar: React.FC = () => {
       ],
     },
     {
-      name: 'Community & Governance',
-      href: '#',
+      name: 'Programs',
+      href: '/programs',
       submenu: [
-        { name: 'Governance', href: '/governance' },
-        { name: 'Community', href: '/community' },
+        { name: 'Our Courses', href: '/programs/courses' },
+        { name: 'Workshops', href: '/programs/workshops' },
       ],
     },
     {
-      name: 'Resources',
-      href: '#',
+      name: 'Projects',
+      href: '/projects',
       submenu: [
-        { name: 'Blog', href: '/blog' },
-        { name: 'Documentation', href: '/documentation' },
+        { name: 'Blockchain Projects', href: '/projects/blockchain' },
+        { name: 'Web3 Projects', href: '/projects/web3' },
       ],
     },
     {
-      name: 'Support',
-      href: '#',
+      name: 'Governance',
+      href: '/governance',
       submenu: [
-        { name: 'FAQ', href: '/faq' },
-        { name: 'Contact', href: '/contact' },
+        { name: 'Voting', href: '/governance/voting' },
+        { name: 'Proposal', href: '/governance/proposal' },
       ],
+    },
+    {
+      name: 'Community',
+      href: '/community',
+      submenu: [
+        { name: 'Community Guidelines', href: '/community/guidelines' },
+        { name: 'Events', href: '/community/events' },
+      ],
+    },
+    {
+      name: 'Blog',
+      href: '/blog',
+      submenu: [
+        { name: 'Latest News', href: '/blog/latest' },
+        { name: 'Guest Posts', href: '/blog/guest-posts' },
+      ],
+    },
+    {
+      name: 'Documentation',
+      href: '/documentation',
+      submenu: [
+        { name: 'API Docs', href: '/documentation/api' },
+        { name: 'Tutorials', href: '/documentation/tutorials' },
+      ],
+    },
+    {
+      name: 'FAQ',
+      href: '/faq',
+    },
+    {
+      name: 'Contact',
+      href: '/contact',
     },
   ];
 
