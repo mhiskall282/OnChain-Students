@@ -21,7 +21,7 @@ export default function Hero() {
               <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
                   <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black bg-gold-500 hover:bg-gold-400 md:py-4 md:text-lg md:px-10">
-                    Join the DAO
+                    Join Now
                     <ArrowRight className="ml-2" size={20} />
                   </button>
                 </div>
