@@ -116,10 +116,10 @@ const Navbar: React.FC = () => {
       ],
     },
     {
-      name: 'Community & Governance',
+      name: 'Community',
       href: '/community',
       submenu: [
-        { name: 'Governance', href: '/governance' },
+        /*{ name: 'Governance', href: '/governance' },*/
         { name: 'Community', href: '/community' },
       ],
     },
