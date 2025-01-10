@@ -3,9 +3,9 @@ import React from 'react';
 export default function Partners() {
   const partners = [
     { name: 'Ethereum Foundation', logo: 'https://images.unsplash.com/photo-1622790698141-94e30457ef12?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80' },
-    { name: 'African Development Bank', logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80' },
-    { name: 'Tech Hub Africa', logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80' },
-    { name: 'Blockchain Academy', logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80' }
+    { name: 'Lisk', logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80' },
+    { name: 'AyA Hq', logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80' },
+    { name: 'Mowblox', logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80' }
   ];
 
   return (
