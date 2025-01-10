@@ -22,7 +22,7 @@ export interface Proposal {
   description: string;
   status: 'active' | 'passed' | 'rejected';
   votes: {
-    for: number;
+    for: number; 
     against: number;
   };
 }
