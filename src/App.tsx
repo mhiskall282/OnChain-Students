@@ -12,27 +12,40 @@ import Blog from './pages/Blog';
 import Documentation from './pages/Documentation';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
+import AdminLogin from './pages/Admin/Login';
+import AdminDashboard from './pages/Admin/Dashboard';
 
 function App() {
   return (
     <Router>
       <div className="min-h-screen bg-black flex flex-col">
-        <Navbar />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/programs" element={<Programs />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/governance" element={<Governance />} />
-            <Route path="/community" element={<Community />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/documentation" element={<Documentation />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-        <Footer />
+        <Routes>
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route
+            path="*"
+            element={
+              <>
+                <Navbar />
+                <main className="flex-grow">
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/programs" element={<Programs />} />
+                    <Route path="/projects" element={<Projects />} />
+                    <Route path="/governance" element={<Governance />} />
+                    <Route path="/community" element={<Community />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/documentation" element={<Documentation />} />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/contact" element={<Contact />} />
+                  </Routes>
+                </main>
+                <Footer />
+              </>
+            }
+          />
+        </Routes>
       </div>
     </Router>
   );
