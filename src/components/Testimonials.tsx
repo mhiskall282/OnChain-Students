@@ -4,19 +4,19 @@ import { Quote } from 'lucide-react';
 export default function Testimonials() {
   const testimonials = [
     {
-      name: 'Sarah M.',
+      name: 'Samuel Akpah',
       role: 'Student Developer',
       image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
       quote: 'Onchain Students has transformed my understanding of blockchain technology and opened up incredible opportunities.'
     },
     {
-      name: 'John D.',
+      name: 'Kaleel ',
       role: 'Program Graduate',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
       quote: 'The mentorship and community support here are unmatched. I\'ve grown both technically and professionally.'
     },
     {
-      name: 'Emma O.',
+      name: 'Mhiskall',
       role: 'Scholarship Recipient',
       image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
       quote: 'Thanks to the scholarship program, I was able to pursue my passion for blockchain development.'
