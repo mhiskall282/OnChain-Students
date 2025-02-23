@@ -156,7 +156,7 @@ export default function Contact() {
                 <MapPin className="text-gold-500 mr-4" size={24} />
                 <div>
                   <h3 className="text-xl font-bold text-gold-500">Location</h3>
-                  <p className="text-gray-300 mt-1">Lagos, Nigeria</p>
+                  <p className="text-gray-300 mt-1">Onchain, Worldwide</p>
                 </div>
               </div>
             </div>
@@ -166,7 +166,7 @@ export default function Contact() {
                 <Phone className="text-gold-500 mr-4" size={24} />
                 <div>
                   <h3 className="text-xl font-bold text-gold-500">Phone</h3>
-                  <p className="text-gray-300 mt-1">+234 123 456 7890</p>
+                  <p className="text-gray-300 mt-1">Coming Soon !!!</p>
                 </div>
               </div>
             </div>
@@ -175,9 +175,9 @@ export default function Contact() {
             <div className="bg-gray-900 rounded-lg p-6 border border-gold-500">
               <h3 className="text-xl font-bold text-gold-500 mb-4">Office Hours</h3>
               <div className="space-y-2 text-gray-300">
-                <p>Monday - Friday: 9:00 AM - 6:00 PM WAT</p>
-                <p>Saturday: 10:00 AM - 2:00 PM WAT</p>
-                <p>Sunday: Closed</p>
+                <p>Monday - Friday: 9:00 AM - 12:00 AM GMT</p>
+                <p>Saturday: 10:00 AM - 12::00 AM GMT </p>
+                <p>Sunday: Available </p>
               </div>
             </div>
           </div>
