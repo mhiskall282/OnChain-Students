@@ -1,7 +1,47 @@
-import React from 'react';
-import { Mail, MessageSquare, MapPin, Phone } from 'lucide-react';
+import React, { useState } from "react";
+import { Mail, MessageSquare, MapPin, Phone } from "lucide-react";
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const formURL = "https://api.web3forms.com/submit";
+    const data = new FormData();
+    
+    data.append("access_key", "b8c68512-3906-4789-9bbd-9f10a7d18ddc"); // Your Web3Forms API Key
+    data.append("name", formData.name);
+    data.append("email", formData.email);
+    data.append("subject", formData.subject);
+    data.append("message", formData.message);
+
+    try {
+      const response = await fetch(formURL, {
+        method: "POST",
+        body: data,
+      });
+
+      if (response.ok) {
+        alert("Message sent successfully!");
+        setFormData({ name: "", email: "", subject: "", message: "" }); // Reset form fields
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("Error submitting the form. Please try again.");
+    }
+  };
+
   return (
     <div className="bg-black min-h-screen">
       {/* Hero Section */}
@@ -23,7 +63,7 @@ export default function Contact() {
           {/* Contact Form */}
           <div className="bg-gray-900 rounded-lg p-8 border border-gold-500">
             <h2 className="text-2xl font-bold text-gold-500 mb-6">Send us a Message</h2>
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-gold-500 mb-2">
                   Name
@@ -31,6 +71,9 @@ export default function Contact() {
                 <input
                   type="text"
                   id="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-2 rounded-md bg-black border border-gold-500 text-white focus:outline-none focus:ring-2 focus:ring-gold-500"
                   placeholder="Your name"
                 />
@@ -42,6 +85,9 @@ export default function Contact() {
                 <input
                   type="email"
                   id="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-2 rounded-md bg-black border border-gold-500 text-white focus:outline-none focus:ring-2 focus:ring-gold-500"
                   placeholder="your@email.com"
                 />
@@ -53,6 +99,9 @@ export default function Contact() {
                 <input
                   type="text"
                   id="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-2 rounded-md bg-black border border-gold-500 text-white focus:outline-none focus:ring-2 focus:ring-gold-500"
                   placeholder="Message subject"
                 />
@@ -64,6 +113,9 @@ export default function Contact() {
                 <textarea
                   id="message"
                   rows={6}
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-2 rounded-md bg-black border border-gold-500 text-white focus:outline-none focus:ring-2 focus:ring-gold-500"
                   placeholder="Your message"
                 ></textarea>
