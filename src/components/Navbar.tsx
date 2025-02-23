@@ -1,172 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
-
-interface NavigationItem {
-  name: string;
-  href: string;
-  submenu?: NavigationItem[]; // Optional submenu
-}
-
-const Logo: React.FC = () => (
-  <Link to="/" className="text-gold-500 font-bold text-xl">
-    Onchain Students
-  </Link>
-);
-
-const DesktopMenu: React.FC<{ navigation: NavigationItem[] }> = ({ navigation }) => {
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-
-  return (
-    <div className="hidden md:flex items-center space-x-4">
-      {navigation.map((item) => (
-        <div
-          key={item.name}
-          className="relative"
-          onMouseEnter={() => item.submenu && setOpenDropdown(item.name)}
-          onMouseLeave={() => setOpenDropdown(null)}
-        >
-          {/* Main Link (e.g., "About") */}
-          <Link
-            to={item.href}
-            className="text-gold-500 hover:text-gold-400 px-3 py-2 rounded-md text-sm font-medium"
-          >
-            {item.name}
-          </Link>
-
-          {/* Dropdown for items with submenu */}
-          {item.submenu && openDropdown === item.name && (
-            <div className="absolute left-0 mt-2 w-48 backdrop-blur-lg border border-gold-500 rounded-md z-50">
-              {item.submenu.map((subitem) => (
-                <Link
-                  key={subitem.name}
-                  to={subitem.href}
-                  className="block text-gold-500 hover:text-gold-400 px-4 py-2 text-sm"
-                >
-                  {subitem.name}
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
-      <div className="ml-4">
-        <ConnectWallet 
-          theme="dark"
-          btnTitle="Connect Wallet"
-          modalSize="wide"
-          welcomeScreen={{
-            title: "Welcome to OnChain Students",
-            subtitle: "Connect your wallet to access exclusive features"
-          }}
-          modalTitleIconUrl="/logo.png"
-          detailsBtn={() => {
-            const address = useAddress();
-            return (
-              <button className="px-4 py-2 rounded-lg backdrop-blur-xl bg-gradient-to-r from-gold-500 to-yellow-500 text-white font-medium hover:shadow-lg hover:shadow-gold-500/20 transition-all duration-300">
-                {address ? `${address.slice(0, 6)}...${address.slice(-4)}` : 'Connect'}
-              </button>
-            );
-          }}
-        />
-      </div>
-    </div>
-  );
-};
-
-const MobileMenu: React.FC<{
-  navigation: NavigationItem[];
-  isOpen: boolean;
-  toggleMenu: () => void;
-}> = ({ navigation, isOpen, toggleMenu }) => {
-  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
-
-  const handleSubmenuClick = (itemName: string) => {
-    if (openSubmenu === itemName) {
-      setOpenSubmenu(null);
-    } else {
-      setOpenSubmenu(itemName);
-    }
-  };
-
-  return (
-    <div
-      className={`md:hidden transition-all duration-300 overflow-hidden ${
-        isOpen ? 'max-h-screen' : 'max-h-0'
-      }`}
-    >
-      <div className="px-2 pt-2 pb-3 space-y-1 backdrop-blur-lg">
-        {navigation.map((item) => (
-          <div key={item.name}>
-            {/* Main menu item */}
-            <div className="flex items-center justify-between">
-              <Link
-                to={item.href}
-                className="text-gold-500 hover:text-gold-400 block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => !item.submenu && toggleMenu()}
-              >
-                {item.name}
-              </Link>
-              {item.submenu && (
-                <button
-                  onClick={() => handleSubmenuClick(item.name)}
-                  className="text-gold-500 hover:text-gold-400 px-3 py-2"
-                >
-                  {openSubmenu === item.name ? '-' : '+'}
-                </button>
-              )}
-            </div>
-
-            {/* Submenu */}
-            {item.submenu && openSubmenu === item.name && (
-              <div className="pl-4 border-l border-gold-500/30">
-                {item.submenu.map((subitem) => (
-                  <Link
-                    key={subitem.name}
-                    to={subitem.href}
-                    className="text-gold-500 hover:text-gold-400 block px-3 py-2 text-sm"
-                    onClick={toggleMenu}
-                  >
-                    {subitem.name}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
-        <div className="px-3 py-2">
-          <ConnectWallet 
-            theme="dark"
-            btnTitle="Connect Wallet"
-            modalSize="wide"
-            welcomeScreen={{
-              title: "Welcome to OnChain Students",
-              subtitle: "Connect your wallet to access exclusive features"
-            }}
-            modalTitleIconUrl="/logo.png"
-            detailsBtn={() => {
-              const address = useAddress();
-              return (
-                <button className="w-full px-4 py-2 rounded-lg backdrop-blur-xl bg-gradient-to-r from-gold-500 to-yellow-500 text-white font-medium hover:shadow-lg hover:shadow-gold-500/20 transition-all duration-300">
-                  {address ? `${address.slice(0, 6)}...${address.slice(-4)}` : 'Connect'}
-                </button>
-              );
-            }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
+import { ConnectWallet } from "@thirdweb-dev/react";
+import { useAuth } from '../context/AuthContext';
 
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [scrolled, setScrolled] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { address, user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 20;
+      const isScrolled = window.scrollY > 0;
       setScrolled(isScrolled);
     };
 
@@ -174,65 +19,80 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navigation: NavigationItem[] = [
-    { name: 'Home', href: '/' },
-    {
-      name: 'About',
-      href: '/about',
-      submenu: [
-        { name: 'Our Team', href: '/about/team' },
-        { name: 'Mission', href: '/about/mission' },
-      ],
-    },
-    {
-      name: 'Community',
-      href: '/community',
-      submenu: [
-        /*{ name: 'Governance', href: '/governance' },*/
-        { name: 'Community', href: '/community' },
-      ],
-    },
-    {
-      name: 'Resources',
-      href: '/documentation',
-      submenu: [
-        { name: 'Blog', href: '/blog' },
-        { name: 'Documentation', href: '/documentation' },
-      ],
-    },
-    {
-      name: 'Support',
-      href: '/contact',
-      submenu: [
-        { name: 'FAQ', href: '/faq' },
-        { name: 'Contact', href: '/contact' },
-      ],
-    },
-  ];
-
-  const toggleMenu = () => setIsOpen(!isOpen);
-
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 transition-all duration-300 z-[100] ${
-        scrolled 
-          ? 'backdrop-blur-lg border-gold-500/50' 
-          : 'border-gold-500'
-      } border-b`}
-    >
+    <nav className={`fixed top-0 left-0 right-0 transition-all duration-300 z-[100] ${
+      scrolled ? 'backdrop-blur-xl bg-[#1a2942]/80 border-gold-500/50' : 'bg-transparent'
+    } border-b`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          {/* Logo */}
+        <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Logo />
+            <Link to="/" className="text-gold-500 text-xl font-bold">
+              OnChain Students
+            </Link>
           </div>
 
           {/* Desktop Menu */}
-          <DesktopMenu navigation={navigation} />
+          <div className="hidden md:flex items-center space-x-4">
+            <Link to="/about" className="text-gray-300 hover:text-gold-500 px-3 py-2 rounded-md text-sm font-medium">
+              About
+            </Link>
+            <Link to="/programs" className="text-gray-300 hover:text-gold-500 px-3 py-2 rounded-md text-sm font-medium">
+              Programs
+            </Link>
+            <Link to="/projects" className="text-gray-300 hover:text-gold-500 px-3 py-2 rounded-md text-sm font-medium">
+              Projects
+            </Link>
+            <Link to="/governance" className="text-gray-300 hover:text-gold-500 px-3 py-2 rounded-md text-sm font-medium">
+              Governance
+            </Link>
+            <Link to="/community" className="text-gray-300 hover:text-gold-500 px-3 py-2 rounded-md text-sm font-medium">
+              Community
+            </Link>
+            
+            <div className="ml-4">
+              <ConnectWallet 
+                theme="dark"
+                btnTitle="Connect"
+                modalSize="wide"
+                auth={{
+                  loginOptional: false,
+                  onLogin(token) {
+                    console.log("User logged in", token);
+                  },
+                  onLogout() {
+                    console.log("User logged out");
+                  },
+                }}
+                welcomeScreen={{
+                  title: "Welcome to OnChain Students",
+                  subtitle: "Connect with your preferred method",
+                  img: {
+                    src: "/logo.png",
+                    width: 150,
+                    height: 150
+                  }
+                }}
+                modalTitleIconUrl="/logo.png"
+                detailsBtn={() => {
+                  return (
+                    <button className="px-4 py-2 rounded-lg backdrop-blur-xl bg-gradient-to-r from-gold-500 to-yellow-500 text-white font-medium hover:shadow-lg hover:shadow-gold-500/20 transition-all duration-300">
+                      {user?.email || address ? 
+                        user?.email || `${address.slice(0, 6)}...${address.slice(-4)}` 
+                        : 'Connect'
+                      }
+                    </button>
+                  );
+                }}
+              />
+            </div>
+          </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
-            <button onClick={toggleMenu} className="text-gold-500 hover:text-gold-400">
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-gray-300 hover:text-white"
+            >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -240,7 +100,63 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu */}
-      <MobileMenu navigation={navigation} isOpen={isOpen} toggleMenu={toggleMenu} />
+      {isOpen && (
+        <div className="md:hidden backdrop-blur-xl bg-[#1a2942]/95 border-t border-gold-500/20">
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            <Link to="/about" className="text-gray-300 hover:text-gold-500 block px-3 py-2 rounded-md text-base font-medium">
+              About
+            </Link>
+            <Link to="/programs" className="text-gray-300 hover:text-gold-500 block px-3 py-2 rounded-md text-base font-medium">
+              Programs
+            </Link>
+            <Link to="/projects" className="text-gray-300 hover:text-gold-500 block px-3 py-2 rounded-md text-base font-medium">
+              Projects
+            </Link>
+            <Link to="/governance" className="text-gray-300 hover:text-gold-500 block px-3 py-2 rounded-md text-base font-medium">
+              Governance
+            </Link>
+            <Link to="/community" className="text-gray-300 hover:text-gold-500 block px-3 py-2 rounded-md text-base font-medium">
+              Community
+            </Link>
+            <div className="px-3 py-2">
+              <ConnectWallet 
+                theme="dark"
+                btnTitle="Connect"
+                modalSize="wide"
+                auth={{
+                  loginOptional: false,
+                  onLogin(token) {
+                    console.log("User logged in", token);
+                  },
+                  onLogout() {
+                    console.log("User logged out");
+                  },
+                }}
+                welcomeScreen={{
+                  title: "Welcome to OnChain Students",
+                  subtitle: "Connect with your preferred method",
+                  img: {
+                    src: "/logo.png",
+                    width: 150,
+                    height: 150
+                  }
+                }}
+                modalTitleIconUrl="/logo.png"
+                detailsBtn={() => {
+                  return (
+                    <button className="w-full px-4 py-2 rounded-lg backdrop-blur-xl bg-gradient-to-r from-gold-500 to-yellow-500 text-white font-medium hover:shadow-lg hover:shadow-gold-500/20 transition-all duration-300">
+                      {user?.email || address ? 
+                        user?.email || `${address.slice(0, 6)}...${address.slice(-4)}` 
+                        : 'Connect'
+                      }
+                    </button>
+                  );
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
