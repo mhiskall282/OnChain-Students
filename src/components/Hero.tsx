@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import { ArrowRight } from 'lucide-react';
 
 export default function Hero() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
+    setMousePosition({ x, y });
+  };
 
   return (
     <div className="relative overflow-hidden">
@@ -51,13 +59,34 @@ export default function Hero() {
         {/* Vertical Divider */}
         <div className="hidden lg:block w-px"></div>
 
-        {/* Image Section */}
-        <div className="lg:w-1/2">
-          <img
-            className="h-full w-full object-cover"
-            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80"
-            alt="Students collaborating"
-          />
+        {/* Image Section with 3D Effect */}
+        <div 
+          className="lg:w-1/2 relative perspective-1000"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={() => setMousePosition({ x: 0, y: 0 })}
+        >
+          <div 
+            className="transform-gpu transition-transform duration-200 ease-out relative"
+            style={{
+              transform: `rotateY(${mousePosition.x}deg) rotateX(${-mousePosition.y}deg)`,
+              transformStyle: 'preserve-3d'
+            }}
+          >
+            <div className="relative overflow-hidden rounded-lg shadow-2xl">
+              <img
+                className="h-full w-full object-cover"
+                style={{
+                  transform: 'translateZ(20px)',
+                }}
+                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80"
+                alt="Students collaborating"
+              />
+              {/* Blur overlay */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-white/30" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,16 +1,19 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useAddress, useDisconnect, useMetamask, useThirdwebAuthContext, useLogin, useLogout } from '@thirdweb-dev/react';
+import React, { createContext, useContext, useState } from 'react';
+
+interface User {
+  id: string;
+  email: string;
+  name: string;
+}
 
 interface AuthContextType {
-  address: string | undefined;
   isLoading: boolean;
-  login: (loginMethod: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  user: any;
+  user: User | null;
 }
 
 const AuthContext = createContext<AuthContextType>({
-  address: undefined,
   isLoading: false,
   login: async () => {},
   logout: async () => {},
@@ -18,66 +21,61 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const address = useAddress();
-  const connect = useMetamask();
-  const disconnect = useDisconnect();
-  const auth = useThirdwebAuthContext();
-  const login = useLogin();
-  const logout = useLogout();
   const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
 
-  const handleLogin = async (loginMethod: string) => {
+  const login = async (email: string, password: string) => {
     try {
       setIsLoading(true);
+      // Here you would typically make an API call to your backend
+      // For now, we'll simulate a login
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
-      if (loginMethod === 'metamask') {
-        await connect();
-      }
-      
-      if (address) {
-        const data = await login();
-        setUser(data);
-      }
+      // Simulate successful login
+      setUser({
+        id: '1',
+        email: email,
+        name: email.split('@')[0],
+      });
     } catch (error) {
       console.error('Login error:', error);
+      throw error;
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleLogout = async () => {
+  const logout = async () => {
     try {
       setIsLoading(true);
-      await logout();
-      await disconnect();
+      // Here you would typically make an API call to your backend
+      // For now, we'll just clear the user
+      await new Promise(resolve => setTimeout(resolve, 500));
       setUser(null);
     } catch (error) {
       console.error('Logout error:', error);
+      throw error;
     } finally {
       setIsLoading(false);
     }
   };
 
-  useEffect(() => {
-    if (!address) {
-      setUser(null);
-    }
-  }, [address]);
-
   return (
-    <AuthContext.Provider
-      value={{
-        address,
-        isLoading,
-        login: handleLogin,
-        logout: handleLogout,
-        user,
-      }}
-    >
+    <AuthContext.Provider value={{
+      isLoading,
+      login,
+      logout,
+      user,
+    }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};

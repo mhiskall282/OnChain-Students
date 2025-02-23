@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { ConnectWallet } from "@thirdweb-dev/react";
-import { useAuth } from '../context/AuthContext';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { address, user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,59 +28,24 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Link to="/about" className="text-gray-300 hover:text-gold-500 px-3 py-2 rounded-md text-sm font-medium">
-              About
-            </Link>
-            <Link to="/programs" className="text-gray-300 hover:text-gold-500 px-3 py-2 rounded-md text-sm font-medium">
-              Programs
-            </Link>
-            <Link to="/projects" className="text-gray-300 hover:text-gold-500 px-3 py-2 rounded-md text-sm font-medium">
-              Projects
-            </Link>
-            <Link to="/governance" className="text-gray-300 hover:text-gold-500 px-3 py-2 rounded-md text-sm font-medium">
-              Governance
-            </Link>
-            <Link to="/community" className="text-gray-300 hover:text-gold-500 px-3 py-2 rounded-md text-sm font-medium">
-              Community
-            </Link>
-            
-            <div className="ml-4">
-              <ConnectWallet 
-                theme="dark"
-                btnTitle="Connect"
-                modalSize="wide"
-                auth={{
-                  loginOptional: false,
-                  onLogin(token) {
-                    console.log("User logged in", token);
-                  },
-                  onLogout() {
-                    console.log("User logged out");
-                  },
-                }}
-                welcomeScreen={{
-                  title: "Welcome to OnChain Students",
-                  subtitle: "Connect with your preferred method",
-                  img: {
-                    src: "/logo.png",
-                    width: 150,
-                    height: 150
-                  }
-                }}
-                modalTitleIconUrl="/logo.png"
-                detailsBtn={() => {
-                  return (
-                    <button className="px-4 py-2 rounded-lg backdrop-blur-xl bg-gradient-to-r from-gold-500 to-yellow-500 text-white font-medium hover:shadow-lg hover:shadow-gold-500/20 transition-all duration-300">
-                      {user?.email || address ? 
-                        user?.email || `${address.slice(0, 6)}...${address.slice(-4)}` 
-                        : 'Connect'
-                      }
-                    </button>
-                  );
-                }}
-              />
+          {/* Desktop Navigation */}
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-4">
+              <Link to="/" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                Home
+              </Link>
+              <Link to="/about" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                About
+              </Link>
+              <Link to="/programs" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                Programs
+              </Link>
+              <Link to="/projects" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                Projects
+              </Link>
+              <Link to="/community" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                Community
+              </Link>
             </div>
           </div>
 
@@ -91,69 +53,34 @@ const Navbar: React.FC = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              <span className="sr-only">Open main menu</span>
+              {isOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden backdrop-blur-xl bg-[#1a2942]/95 border-t border-gold-500/20">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            <Link to="/about" className="text-gray-300 hover:text-gold-500 block px-3 py-2 rounded-md text-base font-medium">
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <Link to="/" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+              Home
+            </Link>
+            <Link to="/about" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
               About
             </Link>
-            <Link to="/programs" className="text-gray-300 hover:text-gold-500 block px-3 py-2 rounded-md text-base font-medium">
+            <Link to="/programs" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
               Programs
             </Link>
-            <Link to="/projects" className="text-gray-300 hover:text-gold-500 block px-3 py-2 rounded-md text-base font-medium">
+            <Link to="/projects" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
               Projects
             </Link>
-            <Link to="/governance" className="text-gray-300 hover:text-gold-500 block px-3 py-2 rounded-md text-base font-medium">
-              Governance
-            </Link>
-            <Link to="/community" className="text-gray-300 hover:text-gold-500 block px-3 py-2 rounded-md text-base font-medium">
+            <Link to="/community" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
               Community
             </Link>
-            <div className="px-3 py-2">
-              <ConnectWallet 
-                theme="dark"
-                btnTitle="Connect"
-                modalSize="wide"
-                auth={{
-                  loginOptional: false,
-                  onLogin(token) {
-                    console.log("User logged in", token);
-                  },
-                  onLogout() {
-                    console.log("User logged out");
-                  },
-                }}
-                welcomeScreen={{
-                  title: "Welcome to OnChain Students",
-                  subtitle: "Connect with your preferred method",
-                  img: {
-                    src: "/logo.png",
-                    width: 150,
-                    height: 150
-                  }
-                }}
-                modalTitleIconUrl="/logo.png"
-                detailsBtn={() => {
-                  return (
-                    <button className="w-full px-4 py-2 rounded-lg backdrop-blur-xl bg-gradient-to-r from-gold-500 to-yellow-500 text-white font-medium hover:shadow-lg hover:shadow-gold-500/20 transition-all duration-300">
-                      {user?.email || address ? 
-                        user?.email || `${address.slice(0, 6)}...${address.slice(-4)}` 
-                        : 'Connect'
-                      }
-                    </button>
-                  );
-                }}
-              />
-            </div>
           </div>
         </div>
       )}
