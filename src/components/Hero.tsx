@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import { ArrowRight } from 'lucide-react';
 
 export default function Hero() {
+  const navigate = useNavigate(); // Hook for navigation
+
   return (
     <div className="relative bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-stretch">
@@ -18,23 +21,25 @@ export default function Hero() {
                 Join a community of passionate students exploring the frontiers of blockchain technology
                 and Web3 innovation across Africa.
               </p>
-             <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row sm:justify-center lg:justify-start">
-  <div className="rounded-md shadow">
-    <a
-      href="https://x.com/onchainstudents" // Replace this with your actual X link
-      target="_blank"
-      rel="noopener noreferrer"
-      className="w-full"
-    >
-      <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black bg-gold-500 hover:bg-gold-400 md:py-4 md:text-lg md:px-10">
-        Join Now
-        <ArrowRight className="ml-2" size={20} />
-      </button>
-    </a>
-  </div>
-  <div className="mt-3 sm:mt-0 sm:ml-3">
-
-                  <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-gold-500 bg-black border-gold-500 hover:bg-gray-900 md:py-4 md:text-lg md:px-10">
+              <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row sm:justify-center lg:justify-start">
+                <div className="rounded-md shadow">
+                  <a
+                    href="https://x.com/onchainstudents" // Replace this with your actual X link
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full"
+                  >
+                    <button className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black bg-gold-500 hover:bg-gold-400 md:py-4 md:text-lg md:px-10">
+                      Join Now
+                      <ArrowRight className="ml-2" size={20} />
+                    </button>
+                  </a>
+                </div>
+                <div className="mt-3 sm:mt-0 sm:ml-3">
+                  <button
+                    onClick={() => navigate("/faq")} // Navigate to FAQ page
+                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-gold-500 bg-black border-gold-500 hover:bg-gray-900 md:py-4 md:text-lg md:px-10"
+                  >
                     Learn More
                   </button>
                 </div>
