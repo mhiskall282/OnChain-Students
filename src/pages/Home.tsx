@@ -8,6 +8,7 @@ import SearchBar from '../components/SearchBar';
 import Features from '../components/Features';
 import Partners from '../components/Partners';
 import Newsletter from '../components/Newsletter';
+import NetworkBackground from '../components/NetworkBackground';
 
 export default function Home() {
   const fadeInUp = {
@@ -18,6 +19,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen overflow-hidden pt-16">
+      <NetworkBackground />
+      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -27,7 +30,7 @@ export default function Home() {
       </motion.div>
 
       <motion.div 
-        className="container mx-auto px-4 py-16 space-y-24"
+        className="container mx-auto px-4 py-16 space-y-24 relative"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
@@ -47,7 +50,6 @@ export default function Home() {
         </motion.section>
 
         <motion.div 
-          className="rounded-2xl p-8"
           {...fadeInUp}
         >
           <Stats />
@@ -57,13 +59,10 @@ export default function Home() {
           className="relative"
           {...fadeInUp}
         >
-          <div className="rounded-3xl p-8">
-            <Roadmap />
-          </div>
+          <Roadmap />
         </motion.div>
 
         <motion.div 
-          className="rounded-2xl p-8"
           {...fadeInUp}
         >
           <Testimonials />
@@ -77,7 +76,6 @@ export default function Home() {
         </motion.div>
 
         <motion.div 
-          className="rounded-2xl p-8"
           {...fadeInUp}
         >
           <Newsletter />
