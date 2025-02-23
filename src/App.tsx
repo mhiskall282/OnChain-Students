@@ -18,7 +18,7 @@ import AdminDashboard from './pages/Admin/Dashboard';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-black flex flex-col">
+      <div className="min-h-screen flex flex-col">
         <Routes>
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
