@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
 
 interface NavigationItem {
   name: string;
@@ -50,9 +51,26 @@ const DesktopMenu: React.FC<{ navigation: NavigationItem[] }> = ({ navigation })
           )}
         </div>
       ))}
-      <button className="bg-gold-500 text-black px-4 py-2 rounded-md hover:bg-gold-400">
-        Connect Wallet
-      </button>
+      <div className="ml-4">
+        <ConnectWallet 
+          theme="dark"
+          btnTitle="Connect Wallet"
+          modalSize="wide"
+          welcomeScreen={{
+            title: "Welcome to OnChain Students",
+            subtitle: "Connect your wallet to access exclusive features"
+          }}
+          modalTitleIconUrl="/logo.png"
+          detailsBtn={() => {
+            const address = useAddress();
+            return (
+              <button className="px-4 py-2 rounded-lg backdrop-blur-xl bg-gradient-to-r from-gold-500 to-yellow-500 text-white font-medium hover:shadow-lg hover:shadow-gold-500/20 transition-all duration-300">
+                {address ? `${address.slice(0, 6)}...${address.slice(-4)}` : 'Connect'}
+              </button>
+            );
+          }}
+        />
+      </div>
     </div>
   );
 };
@@ -117,6 +135,26 @@ const MobileMenu: React.FC<{
             )}
           </div>
         ))}
+        <div className="px-3 py-2">
+          <ConnectWallet 
+            theme="dark"
+            btnTitle="Connect Wallet"
+            modalSize="wide"
+            welcomeScreen={{
+              title: "Welcome to OnChain Students",
+              subtitle: "Connect your wallet to access exclusive features"
+            }}
+            modalTitleIconUrl="/logo.png"
+            detailsBtn={() => {
+              const address = useAddress();
+              return (
+                <button className="w-full px-4 py-2 rounded-lg backdrop-blur-xl bg-gradient-to-r from-gold-500 to-yellow-500 text-white font-medium hover:shadow-lg hover:shadow-gold-500/20 transition-all duration-300">
+                  {address ? `${address.slice(0, 6)}...${address.slice(-4)}` : 'Connect'}
+                </button>
+              );
+            }}
+          />
+        </div>
       </div>
     </div>
   );
